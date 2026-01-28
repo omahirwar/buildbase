@@ -15,16 +15,15 @@
   --muted:#6b7280;
 }
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Inter,Segoe UI,Arial,sans-serif;
-  background:var(--bg);
   color:var(--text);
+  background:var(--bg);
   overflow-x:hidden;
 }
 
-/* ===== ANIMATED BACKGROUND ===== */
+/* BACKGROUND */
 .bg{
   position:fixed;
   inset:0;
@@ -39,89 +38,70 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* ===== LAYOUT ===== */
-.container{
-  width:1200px;
-  margin:auto;
-  padding:40px 50px 100px;
-}
+/* LAYOUT */
+.container{width:1200px;margin:auto;padding:40px 50px 100px}
 .card{
   background:white;
-  border-radius:26px;
+  border-radius:18px;
   padding:40px;
-  box-shadow:0 30px 90px rgba(0,0,0,.15);
+  box-shadow:0 20px 60px rgba(0,0,0,.12);
   margin-bottom:60px;
 }
 h1,h2{margin-top:0}
 
-/* ===== SOCIALS ===== */
-.socials{
-  display:flex;
-  gap:20px;
+/* SEARCH */
+.search{display:flex;gap:12px;margin:20px 0}
+.search input{
+  flex:1;padding:14px;font-size:15px;
+  border-radius:10px;border:1px solid #dbe1f0
 }
+.search button{
+  padding:14px 26px;border:none;border-radius:10px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
+  color:white;cursor:pointer
+}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.box{
+  background:#f4f7ff;padding:22px;border-radius:14px;
+  text-align:center
+}
+
+/* SOCIALS */
+.socials{display:flex;gap:14px}
 .social{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:16px 24px;
-  border-radius:18px;
-  background:#f4f7ff;
-  font-size:16px;
-  cursor:pointer;
-}
-.social span{
-  font-size:22px;
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:10px;
+  background:#fff;border:1px solid #e5e7eb;
+  cursor:pointer;font-size:14px
 }
 
-/* ===== MEME GENERATOR ===== */
-.memeBox{
-  text-align:center;
-}
-.memeBox input{
-  width:80%;
-  padding:12px;
-  margin:8px 0;
-}
-.memeBox button{
-  padding:12px 26px;
-  background:var(--base);
-  color:white;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-}
-#memeCanvas{
-  margin-top:20px;
-  border-radius:16px;
-}
-
-/* ===== QUIZ ===== */
-.q{font-size:20px;margin-bottom:12px}
+/* QUIZ */
+.q{font-size:18px;margin-bottom:10px}
 .opt{margin:6px 0}
-.next{
-  margin-top:14px;
-  padding:12px 26px;
-  background:var(--base);
-  color:white;
-  border:none;
-  border-radius:12px;
+.btn{
+  margin-top:14px;padding:12px 26px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
+  color:white;border:none;border-radius:10px;
+  cursor:pointer
 }
 
-/* ===== EMOJI BLAST ===== */
+/* EMOJI BLAST */
 .emoji{
-  position:fixed;
-  top:-40px;
-  font-size:28px;
+  position:fixed;top:-40px;font-size:28px;
   animation:fall 3s linear forwards;
 }
 @keyframes fall{
   to{transform:translateY(110vh)}
 }
+
+/* MEME */
+#memeCanvas{margin-top:16px;border-radius:14px}
 </style>
 </head>
 
 <body>
-
 <div class="bg"></div>
 
 <div class="container">
@@ -130,32 +110,37 @@ h1,h2{margin-top:0}
   <div class="card">
     <h1>Base Ecosystem Portal</h1>
     <p>Professional Base portal with socials, meme tool & hard quiz.</p>
+
+    <div class="search">
+      <input id="q" placeholder="Search anything about Base">
+      <button onclick="searchBase()">Base Search</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="grid card">
+    <div class="box">⚡ Ethereum L2</div>
+    <div class="box">💸 Low Fees</div>
+    <div class="box">🧠 Learn Base</div>
+    <div class="box">👥 Team</div>
   </div>
 
   <!-- SOCIALS -->
   <div class="card">
     <h2>🔗 My Social Accounts</h2>
     <div class="socials">
-      <div class="social" onclick="window.open('https://base.app/profile/indion','_blank')">
-        <span>🔵</span> Base Profile
-      </div>
-      <div class="social" onclick="window.open('https://x.com/hi_vecna/','_blank')">
-        <span>🐦</span> Twitter (X)
-      </div>
-      <div class="social">
-        <span>💬</span> Discord: <b>om_ahirwar143</b>
-      </div>
+      <div class="social" onclick="window.open('https://base.app/profile/indion','_blank')">🔵 Base</div>
+      <div class="social" onclick="window.open('https://x.com/hi_vecna/','_blank')">🐦 Twitter (X)</div>
+      <div class="social">💬 Discord: <b>om_ahirwar143</b></div>
     </div>
   </div>
 
   <!-- MEME GENERATOR -->
-  <div class="card memeBox">
+  <div class="card">
     <h2>😂 Base Meme Generator</h2>
-    <input id="topText" placeholder="Top text">
-    <input id="bottomText" placeholder="Bottom text">
-    <br>
-    <button onclick="generateMeme()">Generate Meme</button>
-    <br>
+    <input id="topText" placeholder="Top text" style="width:100%;padding:12px">
+    <input id="bottomText" placeholder="Bottom text" style="width:100%;padding:12px;margin-top:8px">
+    <button class="btn" onclick="generateMeme()">Generate Meme</button>
     <canvas id="memeCanvas" width="400" height="400"></canvas>
   </div>
 
@@ -168,18 +153,22 @@ h1,h2{margin-top:0}
 </div>
 
 <script>
-/* ===== MEME ===== */
+/* SEARCH */
+function searchBase(){
+  const q=document.getElementById("q").value.trim();
+  if(!q)return alert("Type something");
+  window.open("https://www.google.com/search?q="+encodeURIComponent(q+" site:base.org"),"_blank");
+}
+
+/* MEME */
 const canvas=document.getElementById("memeCanvas");
 const ctx=canvas.getContext("2d");
 const img=new Image();
-img.src="https://i.imgflip.com/30b1gx.jpg"; // generic meme
+img.src="https://i.imgflip.com/30b1gx.jpg";
 img.onload=()=>ctx.drawImage(img,0,0,400,400);
-
 function generateMeme(){
   ctx.drawImage(img,0,0,400,400);
-  ctx.fillStyle="white";
-  ctx.strokeStyle="black";
-  ctx.font="30px Impact";
+  ctx.font="28px Impact";ctx.fillStyle="white";ctx.strokeStyle="black";
   ctx.textAlign="center";
   ctx.fillText(topText.value,200,40);
   ctx.strokeText(topText.value,200,40);
@@ -187,37 +176,36 @@ function generateMeme(){
   ctx.strokeText(bottomText.value,200,380);
 }
 
-/* ===== QUIZ ===== */
-const quiz=[
- ["Base is built on which stack?","OP Stack",["ZK","OP Stack","Cosmos"]],
- ["Base is an Ethereum","Layer 2",["Layer 1","Layer 2","Sidechain"]],
- ["Base is backed by","Coinbase",["Binance","Coinbase","Circle"]],
- ["OP Stack is by","Optimism",["Arbitrum","Optimism","Polygon"]],
- ["Base main goal","Scale Ethereum",["Replace ETH","Scale Ethereum","NFT only"]],
+/* QUIZ */
+let qs=[
+ ["Base kis par bana hai?","Ethereum",["Solana","Ethereum","Polygon"]],
+ ["Base kisne banaya?","Coinbase",["Binance","Coinbase","Vitalik"]],
+ ["Base kya hai?","Layer 2",["Layer 1","Layer 2","Sidechain"]],
+ ["OP Stack kisne banaya?","Optimism",["Arbitrum","Optimism","Polygon"]],
+ ["Base kis chain par settle hota hai?","Ethereum",["Solana","Ethereum","Base"]],
 ];
+while(qs.length<25)qs.push(...qs.slice(0,25-qs.length));
 
-while(quiz.length<25) quiz.push(...quiz.slice(0,25-quiz.length));
-
-let i=0,score=0;
-function showQ(){
-  const q=quiz[i];
+let i=0,s=0;
+function renderQuiz(){
+  const q=qs[i];
   quizBox.innerHTML=
     `<div class="q">${i+1}. ${q[0]}</div>`+
     q[2].map(o=>`<div class="opt"><input type="radio" name="a" value="${o}"> ${o}</div>`).join("")+
-    `<button class="next" onclick="nextQ()">Submit</button>`;
+    `<button class="btn" onclick="nextQ()">Submit</button>`;
 }
 function nextQ(){
   const a=document.querySelector("input[name=a]:checked");
   if(!a)return alert("Select answer");
-  if(a.value===quiz[i][1])score++;
+  if(a.value===qs[i][1])s++;
   i++;
-  i<quiz.length ? showQ() : finishQuiz();
+  i<qs.length?renderQuiz():finishQuiz();
 }
-showQ();
+renderQuiz();
 
-/* ===== EMOJI BLAST ===== */
+/* EMOJI BLAST */
 function finishQuiz(){
-  quizBox.innerHTML=`<h2>🎉 Quiz Completed! Score: ${score}/25</h2>`;
+  quizBox.innerHTML=`<h2>🎉 Quiz Completed! Score: ${s}/25</h2>`;
   for(let j=0;j<120;j++){
     const e=document.createElement("div");
     e.className="emoji";
