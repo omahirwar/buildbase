@@ -227,6 +227,11 @@ body{
   color:white;
   cursor:pointer;
 }
+
+/* EMOJI FALL */
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
 </style>
 </head>
 
@@ -261,7 +266,6 @@ body{
       <button class="btn secondary" onclick="document.getElementById('team').scrollIntoView()">View Base Team</button>
     </div>
 
-    <!-- STATS -->
     <div class="stats">
       <div class="stat"><h3>⚡ Ethereum L2</h3><p>Built on OP Stack</p></div>
       <div class="stat"><h3>💸 Low Fees</h3><p>Cheaper than L1</p></div>
@@ -270,7 +274,6 @@ body{
     </div>
   </div>
 
-  <!-- FEATURES -->
   <div class="features">
     <h2>What you can do here</h2>
     <div class="featureGrid">
@@ -281,13 +284,31 @@ body{
     </div>
   </div>
 
-  <!-- QUIZ -->
+  <!-- SOCIALS (ADDED) -->
+  <div class="features">
+    <h2>🔗 My Social Accounts</h2>
+    <div class="featureGrid">
+      <div class="feature" onclick="window.open('https://base.app/profile/indion','_blank')" style="cursor:pointer">🔵 Base Profile</div>
+      <div class="feature" onclick="window.open('https://x.com/hi_vecna/','_blank')" style="cursor:pointer">🐦 Twitter (X)</div>
+      <div class="feature">💬 Discord: <b>om_ahirwar143</b></div>
+      <div class="feature">👤 Builder on Base Ecosystem</div>
+    </div>
+  </div>
+
   <div class="quiz" id="quiz">
     <h2>🎯 Base Knowledge Quiz</h2>
     <div id="quizBox"></div>
   </div>
 
-  <!-- TEAM -->
+  <!-- MEME GENERATOR (ADDED) -->
+  <div class="quiz">
+    <h2>😂 Base Meme Generator</h2>
+    <input id="topText" placeholder="Top text" style="width:100%;padding:12px;margin:8px 0">
+    <input id="bottomText" placeholder="Bottom text" style="width:100%;padding:12px;margin:8px 0">
+    <button class="next" onclick="generateMeme()">Generate Meme</button>
+    <canvas id="memeCanvas" width="400" height="400" style="display:block;margin-top:20px;border-radius:14px"></canvas>
+  </div>
+
   <div class="team" id="team">
     <h2>👥 Base Leadership & Team</h2>
     <div class="teamGrid">
@@ -312,27 +333,46 @@ body{
 <div class="music" onclick="toggleMusic()">🎵 Music</div>
 
 <script>
-/* SEARCH */
 function searchBase(){
   var q=document.getElementById("q").value.trim();
   if(!q){alert("Kuch likho");return;}
-  window.open(
-    "https://www.google.com/search?q="+encodeURIComponent(q+" site:base.org"),
-    "_blank"
-  );
+  window.open("https://www.google.com/search?q="+encodeURIComponent(q+" site:base.org"),"_blank");
 }
 
-/* QUIZ */
+/* HARD QUIZ – 25 QUESTIONS */
 var qs=[
- ["Base kis par bana hai?","Ethereum",["Solana","Ethereum","Polygon"]],
- ["Base kisne banaya?","Coinbase",["Binance","Coinbase","Vitalik"]],
- ["Base kya hai?","Layer 2",["Layer 1","Layer 2","Sidechain"]]
+["Base kis stack par bana hai?","OP Stack",["ZK Stack","OP Stack","Cosmos"]],
+["Base kis L1 par settle hota hai?","Ethereum",["Solana","Ethereum","Polygon"]],
+["Base ka main goal kya hai?","Scale Ethereum",["Replace ETH","Scale Ethereum","NFT chain"]],
+["OP Stack kisne develop kiya?","Optimism",["Arbitrum","Optimism","Polygon"]],
+["Base kis company se backed hai?","Coinbase",["Binance","Coinbase","Circle"]],
+["Base execution layer kya provide karta hai?","Low fees",["High fees","Low fees","No fees"]],
+["Base EVM compatible hai?","Yes",["No","Partial","Yes"]],
+["Base par gas fee kis me pay hoti hai?","ETH",["USDC","ETH","BASE"]],
+["OP Stack modular hai?","Yes",["No","Limited","Yes"]],
+["Base rollup type kya hai?","Optimistic",["ZK","Optimistic","Validium"]],
+["Base open source hai?","Yes",["No","Private","Yes"]],
+["Base mainnet kab launch hua?","2023",["2021","2022","2023"]],
+["Base kis ecosystem ka part hai?","Ethereum",["Solana","Ethereum","Cosmos"]],
+["Base par smart contracts kis language me?","Solidity",["Rust","Solidity","Move"]],
+["Base security kis par depend karti hai?","Ethereum",["Base","Coinbase","Optimism"]],
+["Base ka sequencer kaun control karta hai?","Base team",["Public","Base team","Ethereum"]],
+["OP Stack future me kya support karega?","Decentralization",["Centralization","Decentralization","Removal"]],
+["Base developer friendly hai?","Yes",["No","Hard","Yes"]],
+["Base par NFTs possible hain?","Yes",["No","Limited","Yes"]],
+["Base scalability ka main reason?","Rollups",["Sharding","Rollups","Sidechains"]],
+["Base trust model kya hai?","Optimistic",["Trustless","Optimistic","Federated"]],
+["Base Ethereum ke saath kaise interact karta hai?","Settlement",["Mining","Settlement","Staking"]],
+["Base ka vision kya hai?","Onchain economy",["Offchain apps","Onchain economy","CeFi"]],
+["Base fees kam kyu hai?","Batching",["Mining","Batching","Burning"]],
+["Base future focus kya hai?","Mass adoption",["Enterprise only","Mass adoption","Private use"]]
 ];
+
 var i=0,s=0;
 function renderQuiz(){
   var q=qs[i];
   document.getElementById("quizBox").innerHTML=
-    "<div class='q'>"+q[0]+"</div>"+
+    "<div class='q'>"+(i+1)+". "+q[0]+"</div>"+
     q[2].map(o=>"<div class='opt'><input type='radio' name='a' value='"+o+"'> "+o+"</div>").join("")+
     "<button class='next' onclick='nextQ()'>Submit</button>";
 }
@@ -342,9 +382,43 @@ function nextQ(){
   if(a.value==qs[i][1])s++;
   i++;
   if(i<qs.length)renderQuiz();
-  else document.getElementById("quizBox").innerHTML="<h3>Score: "+s+"/"+qs.length+"</h3>";
+  else finishQuiz();
 }
 renderQuiz();
+
+function finishQuiz(){
+  document.getElementById("quizBox").innerHTML="<h2>🎉 Quiz Completed!</h2><p>Your Score: "+s+"/25</p>";
+  for(let k=0;k<120;k++){
+    const e=document.createElement("div");
+    e.textContent=["🎉","🔥","🚀","💙","✨"][Math.floor(Math.random()*5)];
+    e.style.position="fixed";
+    e.style.left=Math.random()*100+"vw";
+    e.style.top="-40px";
+    e.style.fontSize="28px";
+    e.style.animation="fall 3s linear forwards";
+    e.style.zIndex="9999";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),3000);
+  }
+}
+
+/* MEME */
+const canvas=document.getElementById("memeCanvas");
+const ctx=canvas.getContext("2d");
+const memeImg=new Image();
+memeImg.src="https://i.imgflip.com/30b1gx.jpg";
+memeImg.onload=()=>ctx.drawImage(memeImg,0,0,400,400);
+function generateMeme(){
+  ctx.drawImage(memeImg,0,0,400,400);
+  ctx.font="28px Impact";
+  ctx.fillStyle="white";
+  ctx.strokeStyle="black";
+  ctx.textAlign="center";
+  ctx.fillText(topText.value,200,40);
+  ctx.strokeText(topText.value,200,40);
+  ctx.fillText(bottomText.value,200,380);
+  ctx.strokeText(bottomText.value,200,380);
+}
 
 /* MUSIC */
 var playing=false;
