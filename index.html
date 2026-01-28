@@ -14,14 +14,13 @@
   --text:#0a0a0a;
   --muted:#6b7280;
 }
-
-/* RESET */
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Inter,Segoe UI,Arial,sans-serif;
-  color:var(--text);
   background:var(--bg);
+  color:var(--text);
   overflow-x:hidden;
 }
 
@@ -39,193 +38,84 @@ body{
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
-.shape{
-  position:fixed;
-  border-radius:50%;
-  opacity:.35;
-  filter:blur(6px);
-  animation:float 20s ease-in-out infinite;
-  z-index:-2;
-}
-.s1{width:260px;height:260px;background:#0052ff;top:8%;left:6%}
-.s2{width:340px;height:340px;background:#3b82f6;bottom:10%;left:20%;animation-duration:26s}
-.s3{width:280px;height:280px;background:#93c5fd;top:30%;right:10%;animation-duration:22s}
-@keyframes float{
-  0%{transform:translate(0,0)}
-  50%{transform:translate(140px,-140px)}
-  100%{transform:translate(0,0)}
-}
 
 /* ===== LAYOUT ===== */
 .container{
   width:1200px;
   margin:auto;
-  padding:40px 50px 80px;
+  padding:40px 50px 100px;
 }
+.card{
+  background:white;
+  border-radius:26px;
+  padding:40px;
+  box-shadow:0 30px 90px rgba(0,0,0,.15);
+  margin-bottom:60px;
+}
+h1,h2{margin-top:0}
 
-/* HEADER */
-.header{
+/* ===== SOCIALS ===== */
+.socials{
+  display:flex;
+  gap:20px;
+}
+.social{
   display:flex;
   align-items:center;
-  gap:14px;
-  margin-bottom:40px;
-}
-.logo{
-  width:52px;height:52px;
-  background:var(--base);
-  border-radius:14px;
-  color:white;
-  font-weight:900;
-  font-size:26px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* HERO */
-.hero{
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(10px);
-  border-radius:28px;
-  padding:50px;
-  box-shadow:0 40px 120px rgba(0,0,0,.15);
-}
-.hero h1{
-  font-size:44px;
-  margin:0 0 14px;
-}
-.hero p{
-  font-size:18px;
-  color:var(--muted);
-  max-width:800px;
-}
-
-/* SEARCH */
-.search{
-  margin:30px 0;
-  display:flex;
   gap:12px;
-}
-.search input{
-  flex:1;
-  padding:16px;
-  font-size:16px;
-  border-radius:14px;
-  border:1px solid #dbe1f0;
-}
-.search button{
-  padding:16px 34px;
-  font-size:16px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--base),var(--base2));
-  color:white;
-  cursor:pointer;
-}
-
-/* ACTIONS */
-.actions{
-  display:flex;
-  gap:16px;
-}
-.btn{
-  padding:16px 36px;
-  font-size:16px;
-  border-radius:14px;
-  cursor:pointer;
-  border:none;
-}
-.primary{background:linear-gradient(135deg,var(--base),var(--base2));color:white}
-.secondary{background:white;border:2px solid var(--base);color:var(--base)}
-
-/* STATS */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-  margin-top:40px;
-}
-.stat{
-  background:white;
-  border-radius:20px;
-  padding:26px;
-  box-shadow:0 20px 60px rgba(0,0,0,.12);
-}
-.stat h3{margin:0 0 8px}
-
-/* FEATURES */
-.features{
-  margin-top:70px;
-}
-.features h2{margin-bottom:10px}
-.featureGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-  margin-top:20px;
-}
-.feature{
-  background:#f4f7ff;
-  padding:26px;
+  padding:16px 24px;
   border-radius:18px;
+  background:#f4f7ff;
   font-size:16px;
+  cursor:pointer;
+}
+.social span{
+  font-size:22px;
 }
 
-/* QUIZ */
-.quiz{
-  margin-top:80px;
-  background:white;
-  border-radius:28px;
-  padding:50px;
-  box-shadow:0 40px 120px rgba(0,0,0,.15);
+/* ===== MEME GENERATOR ===== */
+.memeBox{
+  text-align:center;
 }
-.quiz h2{margin-top:0}
-.q{font-size:20px;margin-bottom:14px}
-.opt{margin:8px 0}
-.next{
-  margin-top:16px;
-  padding:14px 30px;
+.memeBox input{
+  width:80%;
+  padding:12px;
+  margin:8px 0;
+}
+.memeBox button{
+  padding:12px 26px;
+  background:var(--base);
+  color:white;
   border:none;
   border-radius:12px;
-  background:linear-gradient(135deg,var(--base),var(--base2));
-  color:white;
-}
-
-/* TEAM */
-.team{
-  margin-top:80px;
-}
-.teamGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-.member{
-  background:white;
-  padding:26px;
-  border-radius:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,.12);
-  text-align:center;
-}
-.member b{display:block;margin-bottom:6px}
-
-/* FOOTER */
-.footer{
-  margin-top:100px;
-  text-align:center;
-  color:#6b7280;
-}
-
-/* MUSIC */
-.music{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  padding:14px 22px;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--base),var(--base2));
-  color:white;
   cursor:pointer;
+}
+#memeCanvas{
+  margin-top:20px;
+  border-radius:16px;
+}
+
+/* ===== QUIZ ===== */
+.q{font-size:20px;margin-bottom:12px}
+.opt{margin:6px 0}
+.next{
+  margin-top:14px;
+  padding:12px 26px;
+  background:var(--base);
+  color:white;
+  border:none;
+  border-radius:12px;
+}
+
+/* ===== EMOJI BLAST ===== */
+.emoji{
+  position:fixed;
+  top:-40px;
+  font-size:28px;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(110vh)}
 }
 </style>
 </head>
@@ -233,125 +123,109 @@ body{
 <body>
 
 <div class="bg"></div>
-<div class="shape s1"></div>
-<div class="shape s2"></div>
-<div class="shape s3"></div>
 
 <div class="container">
 
-  <div class="header">
-    <div class="logo">B</div>
-    <h2>Base Ecosystem Portal</h2>
+  <!-- HERO -->
+  <div class="card">
+    <h1>Base Ecosystem Portal</h1>
+    <p>Professional Base portal with socials, meme tool & hard quiz.</p>
   </div>
 
-  <div class="hero">
-    <h1>Explore Base Network</h1>
-    <p>
-      A complete professional portal inspired by the Base ecosystem.
-      Learn, search official Base information, take a quiz, and explore the team.
-    </p>
-
-    <div class="search">
-      <input id="q" placeholder="Search anything about Base (fees, L2, OP Stack)">
-      <button onclick="searchBase()">Base Search</button>
-    </div>
-
-    <div class="actions">
-      <button class="btn primary" onclick="document.getElementById('quiz').scrollIntoView()">Start Quiz</button>
-      <button class="btn secondary" onclick="document.getElementById('team').scrollIntoView()">View Base Team</button>
-    </div>
-
-    <!-- STATS -->
-    <div class="stats">
-      <div class="stat"><h3>⚡ Ethereum L2</h3><p>Built on OP Stack</p></div>
-      <div class="stat"><h3>💸 Low Fees</h3><p>Cheaper than L1</p></div>
-      <div class="stat"><h3>🧠 Learn</h3><p>Quiz + Search</p></div>
-      <div class="stat"><h3>👥 Team</h3><p>Base & Coinbase</p></div>
+  <!-- SOCIALS -->
+  <div class="card">
+    <h2>🔗 My Social Accounts</h2>
+    <div class="socials">
+      <div class="social" onclick="window.open('https://base.app/profile/indion','_blank')">
+        <span>🔵</span> Base Profile
+      </div>
+      <div class="social" onclick="window.open('https://x.com/hi_vecna/','_blank')">
+        <span>🐦</span> Twitter (X)
+      </div>
+      <div class="social">
+        <span>💬</span> Discord: <b>om_ahirwar143</b>
+      </div>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <div class="features">
-    <h2>What you can do here</h2>
-    <div class="featureGrid">
-      <div class="feature">🔍 Search official Base documentation</div>
-      <div class="feature">🧠 Learn Base concepts via quiz</div>
-      <div class="feature">👥 Explore Base leadership & team</div>
-      <div class="feature">🎨 Enjoy animated professional UI</div>
-    </div>
+  <!-- MEME GENERATOR -->
+  <div class="card memeBox">
+    <h2>😂 Base Meme Generator</h2>
+    <input id="topText" placeholder="Top text">
+    <input id="bottomText" placeholder="Bottom text">
+    <br>
+    <button onclick="generateMeme()">Generate Meme</button>
+    <br>
+    <canvas id="memeCanvas" width="400" height="400"></canvas>
   </div>
 
   <!-- QUIZ -->
-  <div class="quiz" id="quiz">
-    <h2>🎯 Base Knowledge Quiz</h2>
+  <div class="card">
+    <h2>🔥 Hard Base Quiz (25 Questions)</h2>
     <div id="quizBox"></div>
-  </div>
-
-  <!-- TEAM -->
-  <div class="team" id="team">
-    <h2>👥 Base Leadership & Team</h2>
-    <div class="teamGrid">
-      <div class="member"><b>Brian Armstrong</b>Coinbase CEO</div>
-      <div class="member"><b>Jesse Pollak</b>Base Lead</div>
-      <div class="member"><b>Base Engineers</b>Protocol</div>
-      <div class="member"><b>DevRel</b>Developers</div>
-      <div class="member"><b>Community</b>Ecosystem</div>
-      <div class="member"><b>Operations</b>Core Team</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    Base Ecosystem Portal • Inspired by base.org
   </div>
 
 </div>
 
-<audio id="bgm" loop>
-  <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3">
-</audio>
-<div class="music" onclick="toggleMusic()">🎵 Music</div>
-
 <script>
-/* SEARCH */
-function searchBase(){
-  var q=document.getElementById("q").value.trim();
-  if(!q){alert("Kuch likho");return;}
-  window.open(
-    "https://www.google.com/search?q="+encodeURIComponent(q+" site:base.org"),
-    "_blank"
-  );
+/* ===== MEME ===== */
+const canvas=document.getElementById("memeCanvas");
+const ctx=canvas.getContext("2d");
+const img=new Image();
+img.src="https://i.imgflip.com/30b1gx.jpg"; // generic meme
+img.onload=()=>ctx.drawImage(img,0,0,400,400);
+
+function generateMeme(){
+  ctx.drawImage(img,0,0,400,400);
+  ctx.fillStyle="white";
+  ctx.strokeStyle="black";
+  ctx.font="30px Impact";
+  ctx.textAlign="center";
+  ctx.fillText(topText.value,200,40);
+  ctx.strokeText(topText.value,200,40);
+  ctx.fillText(bottomText.value,200,380);
+  ctx.strokeText(bottomText.value,200,380);
 }
 
-/* QUIZ */
-var qs=[
- ["Base kis par bana hai?","Ethereum",["Solana","Ethereum","Polygon"]],
- ["Base kisne banaya?","Coinbase",["Binance","Coinbase","Vitalik"]],
- ["Base kya hai?","Layer 2",["Layer 1","Layer 2","Sidechain"]]
+/* ===== QUIZ ===== */
+const quiz=[
+ ["Base is built on which stack?","OP Stack",["ZK","OP Stack","Cosmos"]],
+ ["Base is an Ethereum","Layer 2",["Layer 1","Layer 2","Sidechain"]],
+ ["Base is backed by","Coinbase",["Binance","Coinbase","Circle"]],
+ ["OP Stack is by","Optimism",["Arbitrum","Optimism","Polygon"]],
+ ["Base main goal","Scale Ethereum",["Replace ETH","Scale Ethereum","NFT only"]],
 ];
-var i=0,s=0;
-function renderQuiz(){
-  var q=qs[i];
-  document.getElementById("quizBox").innerHTML=
-    "<div class='q'>"+q[0]+"</div>"+
-    q[2].map(o=>"<div class='opt'><input type='radio' name='a' value='"+o+"'> "+o+"</div>").join("")+
-    "<button class='next' onclick='nextQ()'>Submit</button>";
+
+while(quiz.length<25) quiz.push(...quiz.slice(0,25-quiz.length));
+
+let i=0,score=0;
+function showQ(){
+  const q=quiz[i];
+  quizBox.innerHTML=
+    `<div class="q">${i+1}. ${q[0]}</div>`+
+    q[2].map(o=>`<div class="opt"><input type="radio" name="a" value="${o}"> ${o}</div>`).join("")+
+    `<button class="next" onclick="nextQ()">Submit</button>`;
 }
 function nextQ(){
-  var a=document.querySelector("input[name=a]:checked");
-  if(!a){alert("Answer select karo");return;}
-  if(a.value==qs[i][1])s++;
+  const a=document.querySelector("input[name=a]:checked");
+  if(!a)return alert("Select answer");
+  if(a.value===quiz[i][1])score++;
   i++;
-  if(i<qs.length)renderQuiz();
-  else document.getElementById("quizBox").innerHTML="<h3>Score: "+s+"/"+qs.length+"</h3>";
+  i<quiz.length ? showQ() : finishQuiz();
 }
-renderQuiz();
+showQ();
 
-/* MUSIC */
-var playing=false;
-function toggleMusic(){
-  var m=document.getElementById("bgm");
-  playing?m.pause():m.play();
-  playing=!playing;
+/* ===== EMOJI BLAST ===== */
+function finishQuiz(){
+  quizBox.innerHTML=`<h2>🎉 Quiz Completed! Score: ${score}/25</h2>`;
+  for(let j=0;j<120;j++){
+    const e=document.createElement("div");
+    e.className="emoji";
+    e.style.left=Math.random()*100+"vw";
+    e.textContent=["🎉","🔥","🚀","💙","😂"][Math.floor(Math.random()*5)];
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),3000);
+  }
 }
 </script>
 
