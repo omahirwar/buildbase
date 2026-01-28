@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Base Ecosystem Portal</title>
+<meta name="viewport" content="width=1200">
+
+<style>
+/* ========= COLORS ========= */
+:root{
+  --base:#0052ff;
+  --base2:#3b82f6;
+  --bg1:#eaf0ff;
+  --bg2:#ffffff;
+  --card:#ffffff;
+  --text:#0a0a0a;
+  --muted:#6b7280;
+}
+
+/* ========= RESET ========= */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  color:var(--text);
+  overflow:hidden;
+}
+
+/* ========= ANIMATED BACKGROUND (CLEARLY VISIBLE) ========= */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:linear-gradient(
+    120deg,
+    #dbe7ff,
+    #ffffff,
+    #e0eaff,
+    #ffffff
+  );
+  background-size:400% 400%;
+  animation:bgMove 14s ease infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* floating shapes */
+.shape{
+  position:fixed;
+  border-radius:50%;
+  opacity:.35;
+  filter:blur(6px);
+  animation:float 18s ease-in-out infinite;
+  z-index:-2;
+}
+.s1{width:240px;height:240px;background:#0052ff;top:8%;left:6%}
+.s2{width:320px;height:320px;background:#3b82f6;bottom:6%;left:20%;animation-duration:22s}
+.s3{width:260px;height:260px;background:#93c5fd;top:30%;right:10%;animation-duration:20s}
+@keyframes float{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(120px,-120px)}
+  100%{transform:translate(0,0)}
+}
+
+/* ========= LAYOUT ========= */
+.app{
+  width:1200px;
+  margin:auto;
+  padding:50px;
+}
+
+/* header */
+.header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:40px;
+}
+.logo{
+  width:54px;height:54px;
+  background:var(--base);
+  border-radius:14px;
+  color:white;
+  font-weight:900;
+  font-size:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ========= HERO ========= */
+.hero{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border-radius:28px;
+  padding:50px;
+  box-shadow:0 40px 120px rgba(0,0,0,.15);
+}
+.hero h1{
+  font-size:42px;
+  margin:0 0 14px;
+}
+.hero p{
+  font-size:18px;
+  color:var(--muted);
+}
+
+/* search */
+.search{
+  margin:28px 0;
+  display:flex;
+  gap:12px;
+}
+.search input{
+  flex:1;
+  padding:16px;
+  font-size:16px;
+  border-radius:14px;
+  border:1px solid #dbe1f0;
+}
+.search button{
+  padding:16px 34px;
+  font-size:16px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
+  color:white;
+  cursor:pointer;
+}
+
+/* actions */
+.actions{
+  display:flex;
+  gap:16px;
+  margin-top:10px;
+}
+.btn{
+  padding:16px 36px;
+  font-size:16px;
+  border-radius:14px;
+  cursor:pointer;
+  border:none;
+}
+.primary{background:linear-gradient(135deg,var(--base),var(--base2));color:white}
+.secondary{background:white;border:2px solid var(--base);color:var(--base)}
+
+/* ========= QUIZ ========= */
+#quiz{
+  display:none;
+  margin-top:40px;
+}
+.quizCard{
+  background:white;
+  border-radius:26px;
+  padding:40px;
+  box-shadow:0 40px 120px rgba(0,0,0,.2);
+}
+.q{font-size:22px;margin-bottom:18px}
+.opt{
+  margin:10px 0;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #dbe1f0;
+}
+.next{
+  margin-top:20px;
+  padding:16px;
+  width:100%;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
+  color:white;
+  font-size:16px;
+}
+
+/* ========= TEAM ========= */
+#team{
+  display:none;
+  margin-top:40px;
+}
+.teamGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.member{
+  background:#f4f7ff;
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+}
+.member b{display:block}
+
+/* ========= MUSIC ========= */
+.music{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:14px 22px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
+  color:white;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg"></div>
+<div class="shape s1"></div>
+<div class="shape s2"></div>
+<div class="shape s3"></div>
+
+<div class="app">
+
+  <div class="header">
+    <div class="logo">B</div>
+    <h2>Base Ecosystem Portal</h2>
+  </div>
+
+  <div class="hero">
+    <h1>Explore Base Network</h1>
+    <p>
+      A professional, animated portal inspired by the Base ecosystem.
+      Search Base info, take a quiz, and explore the team.
+    </p>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input id="q" placeholder="Search anything about Base (fees, L2, OP Stack)">
+      <button onclick="searchBase()">Base Search</button>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="btn primary" onclick="startQuiz()">Start Quiz</button>
+      <button class="btn secondary" onclick="showTeam()">View Base Team</button>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quiz">
+      <div class="quizCard" id="quizCard"></div>
+    </div>
+
+    <!-- TEAM -->
+    <div id="team">
+      <h2>Base Team</h2>
+      <div class="teamGrid">
+        <div class="member"><b>Brian Armstrong</b>Coinbase CEO</div>
+        <div class="member"><b>Jesse Pollak</b>Base Lead</div>
+        <div class="member"><b>Engineers</b>Protocol Team</div>
+        <div class="member"><b>DevRel</b>Developers</div>
+        <div class="member"><b>Community</b>Ecosystem</div>
+        <div class="member"><b>Operations</b>Core Team</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3">
+</audio>
+<div class="music" onclick="toggleMusic()">🎵 Music</div>
+
+<script>
+/* SEARCH */
+function searchBase(){
+  var q=document.getElementById("q").value.trim();
+  if(!q){alert("Kuch likho");return;}
+  window.open(
+    "https://www.google.com/search?q="+encodeURIComponent(q+" site:base.org"),
+    "_blank"
+  );
+}
+
+/* QUIZ */
+var questions=[
+ ["Base kis par bana hai?","Ethereum",["Solana","Ethereum","Polygon"]],
+ ["Base kisne banaya?","Coinbase",["Binance","Coinbase","Vitalik"]],
+ ["Base kya hai?","Layer 2",["Layer 1","Layer 2","Sidechain"]]
+];
+var i=0,s=0;
+function startQuiz(){
+  document.getElementById("team").style.display="none";
+  document.getElementById("quiz").style.display="block";
+  showQ();
+}
+function showQ(){
+  var q=questions[i];
+  document.getElementById("quizCard").innerHTML=
+    "<div class='q'>"+q[0]+"</div>"+
+    q[2].map(o=>"<div class='opt'><input type='radio' name='a' value='"+o+"'> "+o+"</div>").join("")+
+    "<button class='next' onclick='next()'>Submit</button>";
+}
+function next(){
+  var a=document.querySelector("input[name=a]:checked");
+  if(!a){alert("Answer select karo");return;}
+  if(a.value==questions[i][1])s++;
+  i++;
+  if(i<questions.length)showQ();
+  else document.getElementById("quizCard").innerHTML="<h2>Score: "+s+"</h2>";
+}
+
+/* TEAM */
+function showTeam(){
+  document.getElementById("quiz").style.display="none";
+  document.getElementById("team").style.display="block";
+}
+
+/* MUSIC */
+var playing=false;
+function toggleMusic(){
+  var m=document.getElementById("bgm");
+  playing?m.pause():m.play();
+  playing=!playing;
+}
+</script>
+
+</body>
+</html>
